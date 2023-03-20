@@ -2,9 +2,14 @@ install_package:
   pkg.installed:
     - pkgs:
       - docker
-      - docker compose
+      - docker-compose
       - git
-      - pip3
+
+install_pip:
+  cmd.run:
+    - name: apt install python3-pip -y
+    - runas: root
+    - shell: /bin/bash
 
 install_influxdb_client:
   pip.installed:
