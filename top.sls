@@ -1,4 +1,6 @@
-'*':
-
-'aws*':
-  - apache
+base:
+  '*':
+    - packages
+    - artifacts
+    - docker_compose
+    - services
