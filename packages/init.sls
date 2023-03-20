@@ -8,10 +8,10 @@ install_docker:
   cmd.run:
     - name: |
         apt-get update
-        sudo apt-get install apt-transport-https ca-certificates curl gnupg2 softwa$
+        sudo apt-get install apt-transport-https ca-certificates curl gnupg2 lsb-release
         mkdir -m 0755 -p /etc/apt/keyrings
-        curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmo$
-        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/do$
+        curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmo -o /etc/apt/keyrings/docker.gpg
+        echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         apt-get update
         apt-get install docker-ce docker-ce-cli containerd.io -y
     - runas: root
