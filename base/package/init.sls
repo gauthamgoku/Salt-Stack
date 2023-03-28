@@ -1,8 +1,7 @@
 install_git:
-  cmd.run:
-    - name: apt-get install git-all -y
-    - runas: root
-    - shell: /bin/bash
+  pkg.installed:
+    - pkgs:
+      - git
 
 install_docker:
   cmd.run:
@@ -13,15 +12,7 @@ install_docker:
         curl -fsSL https://download.docker.com/linux/debian/gpg | sudo gpg --dearmo -o /etc/apt/keyrings/docker.gpg
         echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
         apt-get update
-        apt-get install docker-ce docker-ce-cli containerd.io -y
-    - runas: root
-    - shell: /bin/bash
-
-docker_compose:
-  cmd.run:
-    - name: |
-        curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-c$
-        chmod +x /usr/local/bin/docker-compose
+        apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
     - runas: root
     - shell: /bin/bash
 

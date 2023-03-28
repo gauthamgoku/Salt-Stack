@@ -1,6 +1,6 @@
 base:
   '*':
-    - packages
+    - package
     - artifacts
     - docker_compose
     - services
